@@ -8,31 +8,37 @@
   </head>
   <body>
     <div class="login-container">
-      <h2>Login</h2>
+      <h2 id="formTitle">Login</h2>
+
       <form id="loginForm">
         <div class="input-group">
           <label for="username">Username</label>
-          <input
-            type="text"
-            id="username"
-            placeholder="Enter username"
-            required
-          />
+          <input type="text" id="username" placeholder="Enter username" required />
         </div>
 
         <div class="input-group">
           <label for="password">Password</label>
-          <input
-            type="password"
-            id="password"
-            placeholder="Enter password"
-            required
-          />
+          <div class="password-wrapper">
+            <input type="password" id="password" placeholder="Enter password" required />
+            <span id="togglePassword" class="toggle-password">👁</span>
+          </div>
         </div>
 
-        <button type="submit">Login</button>
+        <div class="input-group remember-row">
+          <label class="checkbox-label">
+            <input type="checkbox" id="rememberMe" />
+            Remember me
+          </label>
+        </div>
+
+        <button type="submit" id="submitBtn">Login</button>
         <p id="errorMsg" class="error-msg"></p>
       </form>
+
+      <p class="switch-mode">
+        <span id="switchText">Don't have an account?</span>
+        <a href="#" id="switchLink">Register</a>
+      </p>
     </div>
 
     <script src="js/script.js"></script>
