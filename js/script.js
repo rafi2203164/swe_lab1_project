@@ -2,6 +2,7 @@ const loginForm = document.getElementById("loginForm");
 const usernameInput = document.getElementById("username");
 const passwordInput = document.getElementById("password");
 const errorMsg = document.getElementById("errorMsg");
+const passwordStrength = document.getElementById("passwordStrength");
 const togglePassword = document.getElementById("togglePassword");
 const rememberMe = document.getElementById("rememberMe");
 const formTitle = document.getElementById("formTitle");
@@ -23,6 +24,34 @@ togglePassword.addEventListener("click", () => {
   const isHidden = passwordInput.type === "password";
   passwordInput.type = isHidden ? "text" : "password";
   togglePassword.textContent = isHidden ? "🙈" : "👁";
+});
+
+passwordInput.addEventListener("input", () => {
+  const password = passwordInput.value;
+
+  if (!password) {
+    passwordStrength.textContent = "";
+    return;
+  }
+
+  let score = 0;
+
+  if (password.length >= 4) score++;
+  if (password.length >= 8) score++;
+  if (/[A-Z]/.test(password)) score++;
+  if (/[0-9]/.test(password)) score++;
+  if (/[^A-Za-z0-9]/.test(password)) score++;
+
+  if (score <= 2) {
+    passwordStrength.textContent = "Weak password";
+    passwordStrength.style.color = "red";
+  } else if (score <= 3) {
+    passwordStrength.textContent = "Medium password";
+    passwordStrength.style.color = "orange";
+  } else {
+    passwordStrength.textContent = "Strong password";
+    passwordStrength.style.color = "green";
+  }
 });
 
 switchLink.addEventListener("click", (e) => {
